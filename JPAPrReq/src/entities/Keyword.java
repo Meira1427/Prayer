@@ -1,9 +1,16 @@
 package entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Keyword {
@@ -13,6 +20,12 @@ public class Keyword {
 	private int id;
 	
 	private String word;
+	
+	@ManyToMany (cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
+	@JoinTable(name="quote_keyword",
+	  joinColumns=@JoinColumn(name="keyword_id"),
+	  inverseJoinColumns=@JoinColumn(name="quote_id"))
+	private List<Quote> quotes;
 
 	public int getId() {
 		return id;
@@ -24,6 +37,14 @@ public class Keyword {
 
 	public void setWord(String word) {
 		this.word = word;
+	}
+
+	public List<Quote> getQuotes() {
+		return quotes;
+	}
+
+	public void setQuotes(List<Quote> quotes) {
+		this.quotes = quotes;
 	}
 
 	@Override

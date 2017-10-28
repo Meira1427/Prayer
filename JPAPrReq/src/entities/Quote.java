@@ -1,11 +1,16 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Quote {
@@ -27,13 +32,13 @@ public class Quote {
 	@OneToOne
 	@JoinColumn(name="version_id")
 	private Version version;
+	
+	@JsonBackReference(value="keywordAndQuote")
+	@ManyToMany(mappedBy="quotes")
+	private List<Keyword> keywords;
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public Book getBook() {
@@ -74,6 +79,14 @@ public class Quote {
 
 	public void setVersion(Version version) {
 		this.version = version;
+	}
+
+	public List<Keyword> getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(List<Keyword> keywords) {
+		this.keywords = keywords;
 	}
 
 	@Override

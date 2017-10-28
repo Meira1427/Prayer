@@ -10,6 +10,8 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import entities.PrayerRequest;
 
 @Transactional
@@ -25,37 +27,93 @@ public class PrayerReqDAOImpl implements PrayerReqDAO {
 		String queryString = "Select p from PrayerRequest p";
 		List<PrayerRequest> list = em.createQuery(queryString, PrayerRequest.class)
 									.getResultList();
+		for (int i = 0; i < list.size(); i++) {
+			requests.add(list.get(i));
+		}
 		return requests;
 	}
 
 	@Override
 	public Set<PrayerRequest> indexCurrent() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<PrayerRequest> requests = new HashSet<>();
+		String queryString = "Select c.prayerReq from current c";
+		List<PrayerRequest> list = em.createQuery(queryString, PrayerRequest.class)
+									.getResultList();
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+			requests.add(list.get(i));
+		}
+		return requests;
 	}
 
 	@Override
 	public PrayerRequest show(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		PrayerRequest prayer = new PrayerRequest();
+		String queryString = "Select p from PrayerRequest p where p.id = :id";
+		List<PrayerRequest> list = em.createQuery(queryString, PrayerRequest.class)
+									.setParameter("id", id)
+									.getResultList();
+		if(list.size() > 0) {
+			prayer= list.get(0);
+		}
+		return prayer;
 	}
 
 	@Override
 	public PrayerRequest create(String prayJson) {
-		// TODO Auto-generated method stub
-		return null;
+		ObjectMapper mapper = new ObjectMapper();
+		PrayerRequest mappedPrayer = null;
+		try {
+			mappedPrayer = mapper.readValue(prayJson, PrayerRequest.class);
+			em.persist(mappedPrayer);
+			em.flush();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return mappedPrayer;
 	}
 
 	@Override
 	public PrayerRequest update(int id, String prayJson) {
-		// TODO Auto-generated method stub
-		return null;
+		PrayerRequest managed = em.find(PrayerRequest.class, id);
+		if(managed==null) {
+			return null;
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		PrayerRequest mapped = null;
+		try {
+			mapped = mapper.readValue(prayJson, PrayerRequest.class);
+			if(mapped.getIpAddress() != null && mapped.getIpAddress() !="") {
+				managed.setIpAddress(mapped.getIpAddress());
+			}
+			if(mapped.getName() != null && mapped.getName() !="") {
+				managed.setName(mapped.getName());
+			}
+			if(mapped.getRequest() != null && mapped.getRequest() !="") {
+				managed.setRequest(mapped.getRequest());
+			}
+			if(mapped.getTimestamp() != null) {
+				managed.setTimestamp(mapped.getTimestamp());
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return managed;
 	}
 
 	@Override
 	public boolean delete(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		PrayerRequest managed = em.find(PrayerRequest.class, id);
+		if(managed==null) {
+			return false;
+		}
+		em.remove(managed);
+		//if em.remove doesn't work, you can use this:
+//		String query = "DELETE FROM PrayerRequest p WHERE t.id = :id";
+//		em.createQuery(query).setParameter("id", id).executeUpdate();
+		return true;
 	}
 
 }
