@@ -1,2 +1,30 @@
-<h1>Hold for Bible Quote Functionality</h1>
-<a href="#/prayer"><input type='submit' class='prayerButton' value='Prayer Request'></a>
+<style>
+	body {
+		background-image: url("prayertree.jpg");
+		background-size: cover;
+		background-position: top +20% center;
+		background-repeat: no-repeat;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+</style>
+<h1>God Loves You</h1>
+<div id="keywords">
+	<form ng-hide="vm.currentQuote">
+		<h2>I am troubled by. . .</h2>
+		<select ng-model='vm.selectedWord' ng-change="vm.getAQuote()">
+			<option ng-repeat='keyword in vm.keywords' value='{{keyword.word}}'>{{keyword.word}}</option>
+		</select>
+	</form>
+	<div id="bible-quote" ng-show='vm.currentQuote'>
+		<p>{{vm.currentQuote.book.name}} {{vm.currentQuote.chapter}}:{{vm.currentQuote.verses}}</p>
+		<p>{{vm.currentQuote.text}}</p>
+		<p>({{vm.currentQuote.version.name}})</p>
+	</div>
+</div>
+<div id="goto-prayer" ng-show='true'>
+	<a href="#/prayer"><input type='submit' class='prayerButton' value='Prayer Request'></a>
+</div>
+<!-- ng-click='vm.currrentQuote = null' -->
+

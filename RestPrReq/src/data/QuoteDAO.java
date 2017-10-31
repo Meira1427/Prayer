@@ -1,7 +1,18 @@
 package data;
 
+import java.util.Set;
+
+import entities.Keyword;
+import entities.Quote;
+
 public interface QuoteDAO {
 	
-	// keyword can return list of indexes not list of object
+	public Set<Quote> indexQuote();
+	public Set<Keyword> indexKeyword();
+	public Set<Quote> quotesPerKeyword(String key);
+	public Quote show(int id);
+	public Quote create(String quoteJson);
+	public Quote update(int id, String quoteJson);
+	public boolean delete(int id);
 
 }

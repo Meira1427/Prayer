@@ -1,1 +1,30 @@
-<h1>In Prayer List HTML</h1>
+<style>
+	body {
+		background-image: url("https://thumb1.shutterstock.com/display_pic_with_logo/243412/202181233/stock-photo-abstract-photo-of-the-mysterious-smoke-white-background-202181233.jpg");
+		background-size: cover;
+		background-position: top 10% center;
+		background-repeat: no-repeat;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+</style>
+<div id="prayer">
+	<h1>Prayer Requests</h1>
+	<div class="wrapper" ng-repeat="pr in vm.currentRequests">
+		<div ng-class="vm.returnNgClass(pr.id)">
+			<p>{{pr.name}}</p>
+			<p>{{pr.request}}</p>
+		</div>
+	</div>
+	
+	<!-- <div id='requests'>
+		<table>
+			<tr ng-repeat="pr in vm.currentRequests">
+				<td>{{pr.name}}</td>
+				<td>{{pr.request}}</td>
+			</tr>
+		</table>
+	</div> -->
+	<a href="#/quote"><input type='submit' class='quoteButton' value='Return to Home'></a>
+</div>

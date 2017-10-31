@@ -4,13 +4,15 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Keyword {
@@ -21,7 +23,8 @@ public class Keyword {
 	
 	private String word;
 	
-	@ManyToMany (cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
+	@JsonIgnore
+	@ManyToMany (fetch=FetchType.EAGER, cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinTable(name="quote_keyword",
 	  joinColumns=@JoinColumn(name="keyword_id"),
 	  inverseJoinColumns=@JoinColumn(name="quote_id"))

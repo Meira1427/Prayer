@@ -15,7 +15,7 @@ public class QuoteTest {
 
 	@Before
 	public void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("Quiz");
+		emf = Persistence.createEntityManagerFactory("Prayer");
 		em = emf.createEntityManager();
 	}
 

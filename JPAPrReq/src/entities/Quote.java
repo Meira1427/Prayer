@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Quote {
@@ -33,7 +33,7 @@ public class Quote {
 	@JoinColumn(name="version_id")
 	private Version version;
 	
-	@JsonBackReference(value="keywordAndQuote")
+	@JsonIgnore
 	@ManyToMany(mappedBy="quotes")
 	private List<Keyword> keywords;
 
