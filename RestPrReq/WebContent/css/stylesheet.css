@@ -46,22 +46,6 @@ div#prayer {
 	margin: 2%;
 }
 
-.wrapper{
-  display: grid;
-  grid-template-columns: 20% 20% 20%;
-  grid-gap: 10%;
-  /*background-color: #90C3D4; background of wrapper*/
-  color: #444;
-}
-
-.box {
-  background-color: #90C3D4; /*background of each box*/
-  color: #fff;
-  border-radius: 5px;
-  padding: 15%;
-  margin: 10%;
-}
-
 table {
 	width: 30%;
 	border-collapse: collapse;

@@ -11,20 +11,20 @@
 </style>
 <div id="prayer">
 	<h1>Prayer Requests</h1>
-	<div class="wrapper" ng-repeat="pr in vm.currentRequests">
+	<!-- <div class="wrapper" ng-repeat="pr in vm.currentRequests">
 		<div ng-class="vm.returnNgClass(pr.id)">
 			<p>{{pr.name}}</p>
 			<p>{{pr.request}}</p>
 		</div>
-	</div>
+	</div> -->
 	
-	<!-- <div id='requests'>
+	<div id='requests'>
 		<table>
 			<tr ng-repeat="pr in vm.currentRequests">
 				<td>{{pr.name}}</td>
 				<td>{{pr.request}}</td>
 			</tr>
 		</table>
-	</div> -->
+	</div>
 	<a href="#/quote"><input type='submit' class='quoteButton' value='Return to Home'></a>
 </div>
