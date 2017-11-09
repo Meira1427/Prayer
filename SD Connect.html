@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://localhost:8080/ngSDConnect/#/home -->
+<html ng-app="appModule" class="ng-scope"><!-- Adds Bootstrap and bootstraps the entire script --><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+
+<!-- Before Angular -->
+ <script src="./SD Connect_files/pdf.min.js"></script>
+        <link rel="stylesheet" href="./SD Connect_files/pdf_viewer.css">
+
+<!-- Angular and 3rd parties -->
+<script src="./SD Connect_files/angular.min.js"></script>
+<script src="./SD Connect_files/angular-route.min.js"></script>
+<script src="./SD Connect_files/angular-cookies.min.js"></script>
+<script src="./SD Connect_files/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="./SD Connect_files/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+<!-- PDF viewer stuff for after Angular -->
+ <script src="./SD Connect_files/angular-pdfjs-viewer.js"></script>
+
+<!-- Modules -->
+<script src="./SD Connect_files/app.module.js"></script>
+<script src="./SD Connect_files/auth.module.js"></script>
+
+<!-- Services -->
+<script src="./SD Connect_files/auth.service.js"></script>
+<script src="./SD Connect_files/profile.service.js"></script>
+<script src="./SD Connect_files/project.service.js"></script>
+<script src="./SD Connect_files/post.service.js"></script>
+<script src="./SD Connect_files/topic.service.js"></script>
+<script src="./SD Connect_files/userconnect.service.js"></script>
+<script src="./SD Connect_files/event.service.js"></script>
+<script src="./SD Connect_files/tag.service.js"></script>
+
+<!-- Components -->
+<script src="./SD Connect_files/registerprofile.component.js"></script>
+<script src="./SD Connect_files/navigation.component.js"></script>
+<script src="./SD Connect_files/forum.component.js"></script>
+<script src="./SD Connect_files/event.component.js"></script>
+<script src="./SD Connect_files/home.component.js"></script>
+<script src="./SD Connect_files/project.component.js"></script>
+<script src="./SD Connect_files/login.component.js"></script>
+<script src="./SD Connect_files/register.component.js"></script>
+<script src="./SD Connect_files/logout.component.js"></script>
+<script src="./SD Connect_files/profile.component.js"></script>
+<script src="./SD Connect_files/userconnect.component.js"></script>
+<script src="./SD Connect_files/resource.component.js"></script>
+
+<!-- Bootstrap and Styling -->
+<script src="./SD Connect_files/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="./SD Connect_files/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+
+<link rel="stylesheet" href="./SD Connect_files/album.css">
+<link rel="stylesheet" href="./SD Connect_files/userconnect.css">
+<link rel="stylesheet" href="./SD Connect_files/app.css">
+<link rel="stylesheet" href="./SD Connect_files/basic.css">
+<!-- <link rel="stylesheet" href="css/bootstrap-responsive.css" />
+<link rel="stylesheet" href="css/bootstrap.css" /> -->
+<link rel="stylesheet" href="./SD Connect_files/custom.css">
+<link rel="stylesheet" href="./SD Connect_files/profile.css">
+<link rel="stylesheet" href="./SD Connect_files/registration.css">
+
+<link href="./SD Connect_files/css" rel="stylesheet">
+
+<style>
+* {font-family: 'Raleway', sans-serif}
+</style>
+
+<title>SD Connect</title>
+
+</head>
+
+<body>
+
+<!-- ngView: --><ng-view class="ng-scope"><home class="ng-scope ng-isolate-scope"><navigation class="ng-isolate-scope">
+<!-- navbar-expand-lg navbar-light bg-light --><!-- old navbar -->
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <a class="navbar-brand" href="http://localhost:8080/ngSDConnect/#/home"><h1 style="font-weight:bold">SDConnect</h1></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:8080/ngSDConnect/#/home">Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:8080/ngSDConnect/#/profile">Profile</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:8080/ngSDConnect/#/userconnect">SD Users</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:8080/ngSDConnect/#/resources">Resources</a>
+      </li>
+      <li class="nav-item active ng-hide" ng-hide="vm.isLoggedInCookie()">
+        <a class="nav-link" href="http://localhost:8080/ngSDConnect/#/login">Log In</a>
+      </li>
+      <li class="nav-item active" ng-show="vm.isLoggedInCookie()">
+        <a class="nav-link" href="http://localhost:8080/ngSDConnect/#/login">Log Out</a>
+      </li>
+    </ul>
+<!--     <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+  </div>
+</nav>
+</navigation>
+
+<div id="event-box">
+	<event class="ng-isolate-scope"><div class="container-fluid">
+<div class="fixed col-xs-3">
+<h1 style="text-align:center; font-weight:bold">SD Events</h1>
+	<div ng-hide="vm.eventSelected || vm.newEvent">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Event Description</th>
+					<th>Public?</th>
+					<th>Date</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- ngRepeat: event in vm.eventList --><tr ng-repeat="event in vm.eventList" class="ng-scope">
+					<td class="ng-binding">See if Cole is actually doing any work.</td>
+					<td class="ng-binding">YES</td>
+					<td class="ng-binding">11/03/2017</td>
+					<td ng-show="vm.currentAdmin()"><input type="submit" value="Edit" ng-click="vm.editEvent(event)"></td>
+				</tr><!-- end ngRepeat: event in vm.eventList --><tr ng-repeat="event in vm.eventList" class="ng-scope">
+					<td class="ng-binding">Have a ball on the company dime. Free games for all!</td>
+					<td class="ng-binding">YES</td>
+					<td class="ng-binding">11/13/2017</td>
+					<td ng-show="vm.currentAdmin()"><input type="submit" value="Edit" ng-click="vm.editEvent(event)"></td>
+				</tr><!-- end ngRepeat: event in vm.eventList --><tr ng-repeat="event in vm.eventList" class="ng-scope">
+					<td class="ng-binding">Build your calculator using jQuery. Due at end of weekend.</td>
+					<td class="ng-binding">NO</td>
+					<td class="ng-binding">11/10/2017</td>
+					<td ng-show="vm.currentAdmin()"><input type="submit" value="Edit" ng-click="vm.editEvent(event)"></td>
+				</tr><!-- end ngRepeat: event in vm.eventList --><tr ng-repeat="event in vm.eventList" class="ng-scope">
+					<td class="ng-binding">Do your MVCCRUD Project part 1. Due at end of weekend.</td>
+					<td class="ng-binding">NO</td>
+					<td class="ng-binding">11/01/2017</td>
+					<td ng-show="vm.currentAdmin()"><input type="submit" value="Edit" ng-click="vm.editEvent(event)"></td>
+				</tr><!-- end ngRepeat: event in vm.eventList -->
+			</tbody>
+		</table>
+	<div ng-show="vm.currentAdmin()">
+		<input type="submit" value="New Event" ng-click="vm.newEvent = true">
+	</div>
+</div>
+</div>
+</div>
+	<div ng-show="vm.eventSelected" class="ng-hide">
+		<form class="ng-pristine ng-valid">
+			<label>Description:</label><input type="text" style="width:300px" ng-model="vm.eventSelected.description" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<label>Date:</label><input type="date" ng-model="vm.eventSelected.date" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<label>Public:</label>
+			<select ng-model="vm.eventSelected.publicEvent" class="ng-pristine ng-untouched ng-valid ng-empty"><option value="? undefined:undefined ?"></option>
+				<option value="YES">yes</option>
+				<option value="NO">no</option>
+			</select>
+			<!-- <input type='text' ng-model='vm.eventSelected.publicEvent'><br> -->
+			<input type="submit" value="Save" ng-click="vm.updateEvent(vm.eventSelected)"><br>
+			<input type="submit" value="Delete" ng-click="vm.deleteEvent(vm.eventSelected.id)"><br>
+			<!-- <input type='submit' value='Cancel' ng-click='vm.displayEvents()' /><br> -->
+		</form>
+	</div>
+	
+	<div ng-show="vm.newEvent == true" class="ng-hide">
+		<form class="ng-pristine ng-valid">
+			<label>Description:</label><input type="text" style="width:300px" ng-model="new.description" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<label>Date:</label><input type="date" ng-model="new.date" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<label>Public:</label>
+			<select ng-model="new.publicEvent" class="ng-pristine ng-untouched ng-valid ng-empty"><option value="? undefined:undefined ?"></option>
+				<option value="YES">yes</option>
+				<option value="NO">no</option>
+			</select>
+			<input type="submit" value="New Event" ng-click="vm.createEvent(new); new={}"><br>
+			<input type="submit" value="Cancel" ng-click="vm.displayEvents()"><br>
+		</form>
+	</div>
+
+</event>
+</div>
+
+<hr>
+
+<div id="forum-box">
+	<forum class="ng-isolate-scope"><div class="container-fluid">
+<div class="fixed col-xs-3">
+	<h1 style="font-weight: bold; text-align: center; margin-bottom: 20px">Threads</h1>
+		<div ng-hide="vm.postView || vm.topicSelected || vm.postSelected">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Select</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- ngRepeat: topic in vm.currentTopics | orderBy : '-id' -->
+			</tbody>
+		</table>
+		<input type="submit" value="New Thread" ng-click="vm.newTopic=true">
+		<!-- <input type='submit' name='submit' value='Filter by Resume Only' ng-click='vm.getTopicByTagKeyword("Resume")' /> -->
+		</div>
+	</div>
+	</div>
+		
+	<div class="container-fluid">
+	<div class="fixed col-xs-3">	
+		<div ng-show="vm.postView" class="ng-hide">
+		<h1 style="font-weight: bold; text-align: center; margin-bottom: 20px">Posts</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>Post Date</th>
+						<th>Message</th>
+						<th>User</th>
+						<th></th>
+						<th>Link</th>
+						<th>Edit</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- ngRepeat: post in vm.currentPosts | orderBy : '-id' -->
+				</tbody>
+			</table>
+			<input type="submit" value="New Post" ng-click="vm.newPost=true">
+			<input type="submit" name="submit" value="Return to List of Threads" ng-click="vm.displayTopics()">
+		</div>
+	</div>
+	</div>
+	
+	<div ng-show="vm.postSelected" class="ng-hide">
+		<form class="ng-pristine ng-valid">
+			<label>Message:</label><textarea rows="10" cols="50" ng-model="vm.postSelected.message" class="ng-pristine ng-untouched ng-valid ng-empty"></textarea><br>
+			<label>Link:</label><input type="text" style="width:300px" ng-model="vm.postSelected.link" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<input type="submit" value="Save" ng-click="vm.updatePost(vm.postSelected)"><br>
+			<input type="submit" value="Delete" ng-click="vm.deletePost(vm.postSelected.id)"><br>
+			<input type="submit" value="Cancel" ng-click="vm.displayTopics()"><br>
+		</form>
+	</div>
+	<div ng-show="vm.topicSelected" class="ng-hide">
+		<form class="ng-pristine ng-valid">
+			<label>Title:</label><input type="text" style="width:400px" ng-model="vm.topicSelected.name" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<input type="submit" value="Save" ng-click="vm.updateTopic(vm.topicSelected)"><br>
+			<input type="submit" value="Delete" ng-click="vm.deleteTopic(vm.topicSelected.id)"><br>
+			<input type="submit" value="Cancel" ng-click="vm.displayTopics()"><br>
+		</form>
+	</div>
+	<div ng-show="vm.newPost == true" class="ng-hide">
+		<form class="ng-pristine ng-valid">
+			<label>Message:</label><textarea rows="10" cols="50" ng-model="new.message" class="ng-pristine ng-untouched ng-valid ng-empty"></textarea><br>
+			<label>Link:</label><input type="text" style="width:300px" ng-model="new.link" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<input type="submit" value="New Post" ng-click="vm.createPost(new); new={}"><br>
+			<input type="submit" value="Cancel" ng-click="vm.displayTopics()"><br>
+		</form>
+	</div>
+	<div ng-show="vm.newTopic == true" class="ng-hide">
+		<form ng-model="new" class="ng-pristine ng-untouched ng-valid ng-empty">
+			<lable>Title:</lable><input type="text" style="width:400px" ng-model="new.name" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<lable>Tag:</lable>
+			<select ng-options="item.type for item in vm.allTags track by item.id" ng-model="new.tag" class="ng-pristine ng-untouched ng-valid ng-empty"><option value="?" selected="selected"></option><option label="Interview" value="4">Interview</option><option label="SQL" value="10">SQL</option><option label="Tools" value="11">Tools</option><option label="Java" value="8">Java</option><option label="Weekend" value="2">Weekend</option><option label="Roommate" value="1">Roommate</option><option label="JavaScript" value="9">JavaScript</option><option label="MidtermProject" value="15">MidtermProject</option><option label="CoverLetter" value="5">CoverLetter</option><option label="FinalProject" value="16">FinalProject</option><option label="Git" value="14">Git</option><option label="Angular" value="12">Angular</option><option label="AWS" value="13">AWS</option><option label="CohortBoard" value="7">CohortBoard</option><option label="General" value="6">General</option><option label="Resume" value="3">Resume</option></select>
+			<input type="submit" value="New Thread" ng-click="vm.createTopic(new); new={}"><br>
+			<input type="submit" value="Cancel" ng-click="vm.displayTopics()"><br>
+		</form>
+	</div>	</forum>
+</div>
+
+<span id="project-box">
+	<project class="ng-isolate-scope"><div class="container-fluid">
+<div class="fixed col-xs-3">
+<h1 style="font-weight: bold; text-align: center; margin-bottom: 20px">Projects</h1>
+	<div ng-hide="vm.projectSelected || vm.newProject">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Project Name</th>
+					<th>Description</th>
+					<th>Estimated Hours</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- ngRepeat: project in vm.projectList --><tr ng-repeat="project in vm.projectList" class="ng-scope">
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding red">Jets Zoom</td>
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding red">Individual Project</td>
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding red">10</td>
+					<td ng-show="vm.currentAdmin()"><input type="submit" value="Edit" ng-click="vm.editProject(project)"></td>
+				</tr><!-- end ngRepeat: project in vm.projectList --><tr ng-repeat="project in vm.projectList" class="ng-scope">
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding yellow">US President's Project</td>
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding yellow">Team Project</td>
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding yellow">8</td>
+					<td ng-show="vm.currentAdmin()"><input type="submit" value="Edit" ng-click="vm.editProject(project)"></td>
+				</tr><!-- end ngRepeat: project in vm.projectList --><tr ng-repeat="project in vm.projectList" class="ng-scope">
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding yellow">JSCalculator</td>
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding yellow">Individual Project</td>
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding yellow">6</td>
+					<td ng-show="vm.currentAdmin()"><input type="submit" value="Edit" ng-click="vm.editProject(project)"></td>
+				</tr><!-- end ngRepeat: project in vm.projectList --><tr ng-repeat="project in vm.projectList" class="ng-scope">
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding red">MVCCRUD Project Pt. 1</td>
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding red">Individual Project</td>
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding red">12</td>
+					<td ng-show="vm.currentAdmin()"><input type="submit" value="Edit" ng-click="vm.editProject(project)"></td>
+				</tr><!-- end ngRepeat: project in vm.projectList --><tr ng-repeat="project in vm.projectList" class="ng-scope">
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding green">Angular Event Tracker</td>
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding green">Individual Project</td>
+					<td ng-class="vm.getIntensity(project.estimatedHours)" class="ng-binding green">4</td>
+					<td ng-show="vm.currentAdmin()"><input type="submit" value="Edit" ng-click="vm.editProject(project)"></td>
+				</tr><!-- end ngRepeat: project in vm.projectList -->
+			</tbody>
+		</table>
+		<div ng-show="vm.currentAdmin()">
+			<input type="submit" value="New Project" ng-click="vm.newProject = true">
+		</div>
+		</div>
+	</div>
+</div>
+<div ng-show="vm.projectSelected" class="ng-hide">
+		<form class="ng-pristine ng-valid">
+			<label>Name:</label><input type="text" style="width:200px" ng-model="vm.projectSelected.name" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<label>Description:</label><input type="text" style="width:300px" ng-model="vm.projectSelected.description" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<label>Estimated Hours:</label><input type="text" ng-model="vm.projectSelected.estimatedHours" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<input type="submit" value="Save" ng-click="vm.updateProject(vm.projectSelected)"><br>
+			<input type="submit" value="Delete" ng-click="vm.deleteProject(vm.projectSelected.id)"><br>
+			<input type="submit" value="Cancel" ng-click="vm.displayProjects()"><br>
+		</form>
+	</div>
+	
+	<div ng-show="vm.newProject == true" class="ng-hide">
+		<form class="ng-pristine ng-valid">
+			<label>Name:</label><input type="text" style="width:200px" ng-model="new.name" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<label>Description:</label><input type="text" style="width:300px" ng-model="new.description" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<label>EstimatedHours:</label><input type="text" ng-model="new.estimatedHours" class="ng-pristine ng-untouched ng-valid ng-empty"><br>
+			<input type="submit" value="New Project" ng-click="vm.createProject(new); new={}"><br>
+			<input type="submit" value="Cancel" ng-click="vm.displayProjects()"><br>
+		</form>
+	</div></project>
+</span>
+</home></ng-view>
+
+
+
+
+</body></html>

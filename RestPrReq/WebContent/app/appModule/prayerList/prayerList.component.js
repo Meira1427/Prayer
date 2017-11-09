@@ -8,7 +8,6 @@ angular.module('prayerModule')
 			vm.currentRequests = [];
 			
 			var getRequests = function() {
-				console.log("entering getRequests")
 				prayerService.current()
 				.then(function(resp){
 					console.log(resp.data);
@@ -21,11 +20,11 @@ angular.module('prayerModule')
 			
 			getRequests();
 			
-			vm.returnNgClass = function(num){
-				return "box " + num;
-			}
-		
-		
+			vm.newRequest = function(prayer){
+				console.log(prayer);
+				prayerService.create(prayer);
+				getRequests();
+			};
 		
 		},
 

@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.Collection;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import data.CurrentDAO;
 import data.PrayerReqDAO;
 import entities.PrayerRequest;
 
@@ -20,6 +22,9 @@ public class PrayerReqController {
 	
 	@Autowired
 	PrayerReqDAO prayDao;
+	
+	@Autowired
+	CurrentDAO currentDao;
 	
 	@RequestMapping(path="prayerping", method=RequestMethod.GET)
 	public String ping() {
@@ -42,13 +47,21 @@ public class PrayerReqController {
 	}
 	
 	@RequestMapping(path="prayers", method=RequestMethod.POST) 
-	public PrayerRequest create(HttpServletRequest req, HttpServletResponse res, String prayerJson) {
-		String ipAddress = req.getRemoteAddr();
+	public PrayerRequest create(HttpServletRequest req, HttpServletResponse res, @RequestBody String prayerJson) {
+		String ipAddress;
+		String xForwardedForHeader = req.getHeader("X-Forwarded-For");
+	    if (xForwardedForHeader == null) {
+	        ipAddress = req.getRemoteAddr();
+	    } else {
+	        ipAddress = new StringTokenizer(xForwardedForHeader, ",").nextToken().trim();
+	    }
+		System.out.println(ipAddress);
 		PrayerRequest pr = prayDao.create(prayerJson, ipAddress);
 		if(pr == null) {
 			res.setStatus(400);
 			return null;
 		}
+		currentDao.updateCurrentList(pr);
 		res.setStatus(201);
 		return pr;
 	}

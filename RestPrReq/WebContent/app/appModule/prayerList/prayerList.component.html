@@ -1,6 +1,6 @@
 <style>
 	body {
-		background-image: url("https://thumb1.shutterstock.com/display_pic_with_logo/243412/202181233/stock-photo-abstract-photo-of-the-mysterious-smoke-white-background-202181233.jpg");
+		background-image: url("sky.jpg");
 		background-size: cover;
 		background-position: top 10% center;
 		background-repeat: no-repeat;
@@ -11,20 +11,94 @@
 </style>
 <div id="prayer">
 	<h1>Prayer Requests</h1>
-	<!-- <div class="wrapper" ng-repeat="pr in vm.currentRequests">
-		<div ng-class="vm.returnNgClass(pr.id)">
-			<p>{{pr.name}}</p>
-			<p>{{pr.request}}</p>
+	<div class="wrapper">
+		<div class="box 0">
+			<p>{{vm.currentRequests[0].name}}</p>
+			<p>{{vm.currentRequests[0].request}}</p>
 		</div>
-	</div> -->
-	
-	<div id='requests'>
-		<table>
-			<tr ng-repeat="pr in vm.currentRequests">
-				<td>{{pr.name}}</td>
-				<td>{{pr.request}}</td>
-			</tr>
-		</table>
+		<div class="box 1">
+			<p>{{vm.currentRequests[1].name}}</p>
+			<p>{{vm.currentRequests[1].request}}</p>
+		</div>
+		<div class="box 2">
+			<p>{{vm.currentRequests[2].name}}</p>
+			<p>{{vm.currentRequests[2].request}}</p>
+		</div>
+		<div class="box 3">
+			<p>{{vm.currentRequests[3].name}}</p>
+			<p>{{vm.currentRequests[3].request}}</p>
+		</div>
+		<div class="box 4">
+			<p>{{vm.currentRequests[4].name}}</p>
+			<p>{{vm.currentRequests[4].request}}</p>
+		</div>
+		<div class="box 5">
+			<p>{{vm.currentRequests[5].name}}</p>
+			<p>{{vm.currentRequests[5].request}}</p>
+		</div>
+		<div class="box 6">
+			<p>{{vm.currentRequests[6].name}}</p>
+			<p>{{vm.currentRequests[6].request}}</p>
+		</div>
+		<div class="box 7">
+			<p>{{vm.currentRequests[7].name}}</p>
+			<p>{{vm.currentRequests[7].request}}</p>
+		</div>
+		<div class="box 8">
+			<p>{{vm.currentRequests[8].name}}</p>
+			<p>{{vm.currentRequests[8].request}}</p>
+		</div>
+		<div class="box 9">
+			<p>{{vm.currentRequests[9].name}}</p>
+			<p>{{vm.currentRequests[9].request}}</p>
+		</div>
+		<div class="box 10">
+			<p>{{vm.currentRequests[10].name}}</p>
+			<p>{{vm.currentRequests[10].request}}</p>
+		</div>
+		<div class="box 11">
+			<p>{{vm.currentRequests[11].name}}</p>
+			<p>{{vm.currentRequests[11].request}}</p>
+		</div>
+		<div class="box 12">
+			<p>{{vm.currentRequests[12].name}}</p>
+			<p>{{vm.currentRequests[12].request}}</p>
+		</div>
+		<div class="box 13">
+			<p>{{vm.currentRequests[13].name}}</p>
+			<p>{{vm.currentRequests[13].request}}</p>
+		</div>
+		<div class="box 14">
+			<p>{{vm.currentRequests[14].name}}</p>
+			<p>{{vm.currentRequests[14].request}}</p>
+		</div>
+		<div class="box 15">
+			<p>{{vm.currentRequests[15].name}}</p>
+			<p>{{vm.currentRequests[15].request}}</p>
+		</div>
+		<div class="box 16">
+			<p>{{vm.currentRequests[16].name}}</p>
+			<p>{{vm.currentRequests[16].request}}</p>
+		</div>
+		<div class="box 17">
+			<p>{{vm.currentRequests[17].name}}</p>
+			<p>{{vm.currentRequests[17].request}}</p>
+		</div>
+		<div class="box 18">
+			<p>{{vm.currentRequests[18].name}}</p>
+			<p>{{vm.currentRequests[18].request}}</p>
+		</div>
+		<div class="box 19">
+			<p>{{vm.currentRequests[19].name}}</p>
+			<p>{{vm.currentRequests[19].request}}</p>
+		</div>
+	</div>
+	<div id="prayer-form">
+		<form>
+			<label>First Name: </label><input type='text' value='fname' ng-model='new.name' /><br>
+			<label>Request: </label><input type='text' value='request' ng-model='new.request' /><br>
+			<input type='submit' value='Submit Prayer Request' ng-click='vm.newRequest(new)' />
+		</form>
 	</div>
 	<a href="#/quote"><input type='submit' class='quoteButton' value='Return to Home'></a>
 </div>

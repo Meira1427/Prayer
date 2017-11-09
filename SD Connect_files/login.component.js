@@ -1,0 +1,21 @@
+angular.module("authModule").component("login", {
+	templateUrl : "app/authModule/login/login.component.html",
+	controller : function(authService, $filter, $location, $http, $routeParams, $cookies) {
+		var vm = this;
+		
+		vm.login = function(user) {
+			console.log("inside login")
+			authService.getToken(); //console.log in the authService
+			
+			authService.login(user)
+			.then(function(response){
+				$location.path("/home");
+			})
+			.catch(function(error){
+				console.log(error);
+			});
+		}
+		
+	},
+	controllerAs : "vm"
+})

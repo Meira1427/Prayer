@@ -21,8 +21,6 @@ public class PrayerReqDAOImpl implements PrayerReqDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
-	
-	private int maxCurrent = 5;
 
 	@Override
 	public Set<PrayerRequest> indexAll() {
@@ -64,43 +62,21 @@ public class PrayerReqDAOImpl implements PrayerReqDAO {
 
 	@Override
 	public PrayerRequest create(String prayJson, String ipAddress) {
+		System.out.println("************** in Create ***********************");
 		ObjectMapper mapper = new ObjectMapper();
 		PrayerRequest mappedPrayer = null;
 		try {
 			mappedPrayer = mapper.readValue(prayJson, PrayerRequest.class);
+			mappedPrayer.setTimestamp(new java.sql.Date(new java.util.Date().getTime()));
+			mappedPrayer.setIpAddress(ipAddress);
 			em.persist(mappedPrayer);
 			em.flush();
-			mappedPrayer.setIpAddress(ipAddress);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		updateCurrentList(mappedPrayer); //put new prayerRequest in; delete oldest, see below
+//		updateCurrentList(mappedPrayer); //put new prayerRequest in; delete oldest, see below
 		return mappedPrayer;
-	}
-	
-	//Note that maxCurrent is the total max size of the current list of prayerRequests
-	//Use variable so that we can change from 5 to 50 as interest grows
-	//this function reaches out to #2 and puts its id into #1, #3 into #2 etc
-	//putting the newest prayerRequest into the maximum value spot in "current"
-	private void updateCurrentList(PrayerRequest mappedPrayer) {
-		String getCurr = "Select c from current c where id=:id";
-		for(int i = 1; i < maxCurrent; i++) {
-			Current current = em.createQuery(getCurr, Current.class)
-								.setParameter("id", i+1)
-								.getResultList()
-								.get(0);
-			int currentId = current.getPrayerReq().getId();
-			em.createQuery("Update current c set c.pr_id = :new where id = :id")
-								.setParameter("new", currentId)
-								.setParameter("id", i)
-								.executeUpdate();
-		}
-		int newNum = mappedPrayer.getId();
-		em.createQuery("Update current c set c.pr_id = :new where id = :id)")
-								.setParameter("new", newNum)
-								.setParameter("id", maxCurrent)
-								.executeUpdate();
 	}
 
 	@Override
@@ -140,7 +116,7 @@ public class PrayerReqDAOImpl implements PrayerReqDAO {
 		}
 		em.remove(managed);
 		//if em.remove doesn't work, you can use this:
-//		String query = "DELETE FROM PrayerRequest p WHERE t.id = :id";
+//		String query = "DELETE FROM PrayerRequest p WHERE p.id = :id";
 //		em.createQuery(query).setParameter("id", id).executeUpdate();
 		return true;
 	}
