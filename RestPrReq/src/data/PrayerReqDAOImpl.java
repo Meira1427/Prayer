@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import entities.Current;
 import entities.PrayerRequest;
+import entities.RejectedWord;
 
 @Transactional
 @Repository
@@ -62,20 +62,23 @@ public class PrayerReqDAOImpl implements PrayerReqDAO {
 
 	@Override
 	public PrayerRequest create(String prayJson, String ipAddress) {
-		System.out.println("************** in Create ***********************");
 		ObjectMapper mapper = new ObjectMapper();
 		PrayerRequest mappedPrayer = null;
 		try {
 			mappedPrayer = mapper.readValue(prayJson, PrayerRequest.class);
 			mappedPrayer.setTimestamp(new java.sql.Date(new java.util.Date().getTime()));
 			mappedPrayer.setIpAddress(ipAddress);
-			em.persist(mappedPrayer);
-			em.flush();
+			if(!containsRejectedWord(mappedPrayer)) {
+				em.persist(mappedPrayer);
+				em.flush();
+			}
+			else {
+				mappedPrayer = null;
+			}
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-//		updateCurrentList(mappedPrayer); //put new prayerRequest in; delete oldest, see below
 		return mappedPrayer;
 	}
 
@@ -120,5 +123,27 @@ public class PrayerReqDAOImpl implements PrayerReqDAO {
 //		em.createQuery(query).setParameter("id", id).executeUpdate();
 		return true;
 	}
+
+	@Override
+	public boolean containsRejectedWord(PrayerRequest pr) {
+		boolean answer = false;
+		String name;
+		String req;
+		String word;
+		String query = "Select r from RejectedWord r";
+		List<RejectedWord> badWords = em.createQuery(query, RejectedWord.class)
+									 .getResultList();
+		for (int i = 0; i < badWords.size(); i++) {
+			name = pr.getName().toLowerCase();
+			req = pr.getRequest().toLowerCase();
+			word = badWords.get(i).getWord();
+			if(name.contains(word) || req.contains(word)) {
+				answer = true;
+				break;
+			}
+		}
+		return answer;
+	}
+	
 
 }

@@ -7,6 +7,8 @@ angular.module('prayerModule')
 			
 			vm.currentRequests = [];
 			
+			vm.badRequest = false;
+			
 			var getRequests = function() {
 				prayerService.current()
 				.then(function(resp){
@@ -22,8 +24,14 @@ angular.module('prayerModule')
 			
 			vm.newRequest = function(prayer){
 				console.log(prayer);
-				prayerService.create(prayer);
-				getRequests();
+				prayerService.create(prayer)
+				.then(function(resp){
+					getRequests();
+				})
+				.catch(function(error){
+					vm.badRequest = true;
+					console.log(error);
+				});	
 			};
 		
 		},

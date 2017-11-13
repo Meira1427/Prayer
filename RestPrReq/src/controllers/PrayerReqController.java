@@ -55,7 +55,6 @@ public class PrayerReqController {
 	    } else {
 	        ipAddress = new StringTokenizer(xForwardedForHeader, ",").nextToken().trim();
 	    }
-		System.out.println(ipAddress);
 		PrayerRequest pr = prayDao.create(prayerJson, ipAddress);
 		if(pr == null) {
 			res.setStatus(400);

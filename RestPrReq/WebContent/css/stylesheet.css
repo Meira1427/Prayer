@@ -79,10 +79,10 @@ tr {
   color: #4c394c;
   border-radius: 20%;
   padding: 5%;
-  font-size: .8em;
+  font-size: .6em;
   line-height: .3;
   text-alighn: center;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 
 #prayer-form {
@@ -92,5 +92,14 @@ tr {
 	margin-bottom: 1%;
 	padding: 1%;
 }
+
+#bad-request {
+	font-size: 1.5em;
+	color: black;
+	text-align: center;
+	display: block;
+	position: fixed;
+}
+
 
 

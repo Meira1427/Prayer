@@ -9,7 +9,10 @@
 		left: 0;
 	}
 </style>
-<div id="prayer">
+	<div id="bad-request" ng-show='vm.badRequest'>
+		<h3>The light shines in the darkness, and the darkness has not overcome it. John 1:5 (NIV)</h3>
+	</div>
+<div id="prayer" ng-hide="vm.badRequest">
 	<h1>Prayer Requests</h1>
 	<div class="wrapper">
 		<div class="box 0">
@@ -93,12 +96,13 @@
 			<p>{{vm.currentRequests[19].request}}</p>
 		</div>
 	</div>
-	<div id="prayer-form">
+	<div id="prayer-form" ng-hide='vm.badRequest'>
 		<form>
 			<label>First Name: </label><input type='text' value='fname' ng-model='new.name' /><br>
 			<label>Request: </label><input type='text' value='request' ng-model='new.request' /><br>
-			<input type='submit' value='Submit Prayer Request' ng-click='vm.newRequest(new)' />
+			<input type='submit' value='Submit Prayer Request' ng-click='vm.newRequest(new); new={}' />
 		</form>
+		<a href="#/quote"><input type='submit' class='quoteButton' value='Return to Home'></a>
 	</div>
-	<a href="#/quote"><input type='submit' class='quoteButton' value='Return to Home'></a>
+
 </div>

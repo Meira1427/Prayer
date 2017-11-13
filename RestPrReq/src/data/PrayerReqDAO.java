@@ -11,5 +11,6 @@ public interface PrayerReqDAO {
 	public PrayerRequest create(String prayJson, String ipAddress);
 	public PrayerRequest update(int id, String prayJson);
 	public boolean delete(int id);
+	public boolean containsRejectedWord(PrayerRequest pr);
 
 }
