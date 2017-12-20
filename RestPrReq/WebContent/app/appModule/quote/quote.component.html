@@ -1,42 +1,38 @@
-<style>
-	body {
-		background-image: url("prayertree.jpg");
-		background-size: cover;
-		background-position: top +20% center;
-		background-repeat: no-repeat;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
-	
-	@media (min-height: 680px), screen and (orientation: portrait) {
-	body {
-		background-position: bottom center;
-		background-size: contain;
-		position: fixed;
-		left: 0;
-		bottom: 0;
-		color: red;
-	}
+<div class='bg-quote'>
+	<div class='container'>
+		<div class='row'><!-- row 1 -->
+			<div class='col-xs-12'>		
+				<h1>God Loves You</h1>
+			</div>
+		</div> <!-- end row 1 -->
+		<div class='row'> <!-- row 2 -->
+			<div class='col-md-4'>
+			</div>
+			<div class='col-md-4 col-xs-3'>
+			</div>
+			<div id="keywords" class='col-xs-6 col-md-4'>
+				<form ng-hide="vm.currentQuote">
+					<h2>I am troubled by. . .</h2>
+					<select ng-model='vm.selectedWord' ng-change="vm.getAQuote()" class='form-control'>
+						<option ng-repeat='keyword in vm.keywords' value='{{keyword.word}}'>{{keyword.word}}</option>
+					</select>
+				</form>
+				<div id="bible-quote" ng-show='vm.currentQuote'>
+					<p>{{vm.currentQuote.book.name}} {{vm.currentQuote.chapter}}:{{vm.currentQuote.verses}}</p>
+					<p>{{vm.currentQuote.text}}</p>
+					<p>({{vm.currentQuote.version.name}})</p>
+					<input type='submit' class='returnButton' value='Return' ng-click='vm.currentQuote=null'>
+				</div>
+			</div> <!-- end id=keywords -->
+				<div class='col-xs-3'>
+			</div> 
+		</div> <!-- end row 2 -->
+		<div class='row'> <!-- row 3 -->
+			<div id="goto-prayer" class='col-xs-12 col-md-4'>
+				<a href="#/prayer"><input type='submit' class='prayerButton' value='Prayer Request'></a>
+			</div> <!-- end goto-prayer -->
+		</div> <!-- end row 3 -->
+	</div> <!-- end container -->
+</div> <!-- end bg-quote -->
 
-}
-</style>
-<h1>God Loves You</h1>
-<div id="keywords">
-	<form ng-hide="vm.currentQuote">
-		<h2>I am troubled by. . .</h2>
-		<select ng-model='vm.selectedWord' ng-change="vm.getAQuote()">
-			<option ng-repeat='keyword in vm.keywords' value='{{keyword.word}}'>{{keyword.word}}</option>
-		</select>
-	</form>
-	<div id="bible-quote" ng-show='vm.currentQuote'>
-		<p>{{vm.currentQuote.book.name}} {{vm.currentQuote.chapter}}:{{vm.currentQuote.verses}}</p>
-		<p>{{vm.currentQuote.text}}</p>
-		<p>({{vm.currentQuote.version.name}})</p>
-	</div>
-</div>
-<div id="goto-prayer" ng-show='true'>
-	<a href="#/prayer"><input type='submit' class='prayerButton' value='Prayer Request'></a>
-</div>
-<!-- ng-click='vm.currrentQuote = null' -->
 
