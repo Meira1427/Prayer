@@ -12,7 +12,7 @@
 			</div>
 			<div id="keywords" class='col-xs-6 col-md-4'>
 				<form ng-hide="vm.currentQuote">
-					<h2>I am troubled by. . .</h2>
+					<h3>I am troubled by. . .</h3>
 					<select ng-model='vm.selectedWord' ng-change="vm.getAQuote()" class='form-control'>
 						<option ng-repeat='keyword in vm.keywords' value='{{keyword.word}}'>{{keyword.word}}</option>
 					</select>

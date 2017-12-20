@@ -5,6 +5,8 @@ body {
 	right: 0;
 	top: 0;
 	bottom: 0;
+	padding: 0;
+	margin: 0;
 }
 
 .bg-quote {
@@ -26,32 +28,20 @@ body {
 	background-size: cover;
 	background-position: top center;
 	background-repeat: no-repeat;
+	background-attachment: fixed;
+	overflow: hidden;
 	height: 100%;
 	top: 0;
 	left: 0;
-	padding: 0;
+	padding-top: -10px;
 	margin: 0;
 }
 
-@media screen and (orientation: portrait) {
-	.bg-quote {
-		background-position: left +30% center;
-	}
-	
-	div#bible-quote {
-		font-size: 2em;
-	}
-
-	
-	div h1 {
-		font-size: 5em;
-		margin-bottom: 3%;
-	}
-	
-	.prayerButton, returnButton {
-		font-size: 3em;
-		background-color: white;
-	}
+div.panel-default {
+	border: 2px solid #204056;
+	background-color: #c8bce1;
+	width: 22%;
+	margin: 1%;
 }
 
 h1 {
@@ -106,17 +96,44 @@ div#prayer {
 }
 
 #bad-request {
-	font-size: 1.5em;
-	color: black;
+	font-size: 5em;
+	color: #204056;
 	text-align: center;
 	display: block;
-	position: fixed;
+	background-color: #c5d4ed;
 }
 
-div.panel-default {
-	border: 1px solid navy;
-	background-color: green;
+@media screen and (orientation: portrait) {
+	.bg-quote {
+		background-position: left +30% center;
+	}
+	
+	div#bible-quote {
+		font-size: 2em;
+	}
+	
+	div h1 {
+		font-size: 5em;
+		margin-bottom: 3%;
+	}
+	
+	.prayerButton, returnButton {
+		font-size: 3em;
+		background-color: white;
+	}
+	
+	div.panel-default {
+		width: 100%;
+		font-size: 2em;
+	}
+	
+	div#prayer-form {
+		width: 100%;
+		font-size: 2em;
+	}
+	
 }
+
 
 
 
