@@ -100,7 +100,13 @@ div#prayer {
 	color: #204056;
 	text-align: center;
 	display: block;
-	background-color: #c5d4ed;
+	height: 1000px;
+	min-height: 500px;
+	width: 100%;
+}
+
+h3.error-message {
+	margin-top: 20%;
 }
 
 @media screen and (orientation: portrait) {
@@ -130,6 +136,15 @@ div#prayer {
 	div#prayer-form {
 		width: 100%;
 		font-size: 2em;
+	}
+	
+	#bad-request {
+		height: 2000px;
+		min-height: 1000px;
+	}
+	
+	h3.error-message {
+		margin-top: 50%;
 	}
 	
 }
